@@ -8,7 +8,7 @@
 
 Скачайте **PS3Presence-0.7.1-beta-win64-portable.zip**, распакуйте весь архив и запустите **PS3Presence/PS3Presence.exe**. Не удаляйте папку **_internal** рядом с EXE. Python и установка не нужны.
 
-Перед обновлением завершите старую копию через «Выйти» в трее. Настройки, авторизация и статистика сохраняются в `%LOCALAPPDATA%\PS3Presence`. Автозапуск сам на новую папку не переключается. Релиз **0.7.0 beta** остаётся доступным.
+Перед обновлением завершите старую копию через «Выйти» в трее. Настройки, авторизация и статистика сохраняются в `%LOCALAPPDATA%\PS3Presence`. Автозапуск сам на новую папку не переключается.
 
 [Инструкция на русском](https://github.com/frrstgvmp/PS3Presence/blob/v0.7.1-beta/README.md) · [Сообщить о проблеме](https://github.com/frrstgvmp/PS3Presence/issues)
 
@@ -22,7 +22,7 @@
 
 Download **PS3Presence-0.7.1-beta-win64-portable.zip**, extract the entire archive and run **PS3Presence/PS3Presence.exe**. Keep the **_internal** folder beside the EXE. No Python or installation is required.
 
-Quit any older copy from its tray menu before updating. Settings, authentication and statistics remain in `%LOCALAPPDATA%\PS3Presence`. Autostart does not automatically switch to the new folder. **0.7.0 beta** remains available.
+Quit any older copy from its tray menu before updating. Settings, authentication and statistics remain in `%LOCALAPPDATA%\PS3Presence`. Autostart does not automatically switch to the new folder.
 
 [English instructions](https://github.com/frrstgvmp/PS3Presence/blob/v0.7.1-beta/README.en.md) · [Report an issue](https://github.com/frrstgvmp/PS3Presence/issues)
 
