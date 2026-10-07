@@ -23,7 +23,7 @@ import transparent_animation  # Register the software-compatible QML GIF item.
 from bridge import BridgePhase, BridgeSnapshot, PresenceBridge, MIN_POLL_INTERVAL_SECONDS, load_settings
 from autostart import is_autostart_enabled, set_autostart_enabled
 from garland_audio import GarlandAudio
-from app_metadata import VERSION, DEFAULT_LIGHT_OFFSETS, AUTHOR_DISCORD_USERNAME, AUTHOR_DISCORD_USER_ID
+from app_metadata import VERSION, DEFAULT_LIGHT_OFFSETS, AUTHOR_DISCORD_USERNAME, AUTHOR_DISCORD_USER_ID, GITHUB_REPOSITORY_URL, GITHUB_ISSUES_URL
 from time_format import format_exact_remaining
 from settings_store import APP_DATA_DIR, DEFAULT_THEME_ID, StoredConfiguration, is_new_year_theme_available, load_configuration, load_npsso, load_npsso_expires_at, save_configuration, save_npsso, save_theme
 from game_statistics import GameTimeTracker, format_playtime
@@ -520,6 +520,14 @@ class PresenceController(QObject):
     @Slot()
     def copyAuthorDiscordUsername(self) -> None:
         QApplication.clipboard().setText(AUTHOR_DISCORD_USERNAME)
+
+    @Slot(result=bool)
+    def openGitHubRepository(self) -> bool:
+        return QDesktopServices.openUrl(QUrl(GITHUB_REPOSITORY_URL))
+
+    @Slot(result=bool)
+    def openGitHubIssues(self) -> bool:
+        return QDesktopServices.openUrl(QUrl(GITHUB_ISSUES_URL))
 
     @Slot()
     def openSsoCookie(self) -> None:

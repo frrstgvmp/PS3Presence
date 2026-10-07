@@ -26,7 +26,9 @@ directories named for their distributions. The PyInstaller bootloader uses its
 upstream license and exception; PS3 Presence does not alter those terms.
 
 Artwork, logos and audio
-PlayStation and Discord names and logos belong to their respective owners.
+The GitHub mark is from GitHub Octicons: https://github.com/primer/octicons
+Its MIT license is supplied in Octicons/LICENSE.txt.
+PlayStation, Discord and GitHub names and logos belong to their respective owners.
 Game artwork retrieved from PlayStation or GameTDB is not included as a bundled
 game library and remains subject to its owners' terms.
 GameTDB attribution: https://www.gametdb.com/PS3/Downloads

@@ -6,6 +6,8 @@ RELEASE_VERSION = VERSION.replace(" ", "-")
 # Public author contact; separate from the player's PSN/Discord account.
 AUTHOR_DISCORD_USERNAME = "lapamivverh"
 AUTHOR_DISCORD_USER_ID = "308300626062737411"
+GITHUB_REPOSITORY_URL = "https://github.com/forrestdarko-commits/PS3Presence"
+GITHUB_ISSUES_URL = GITHUB_REPOSITORY_URL + "/issues"
 
 # Defaults shipped with the app, without copying the user's private settings.
 # Previously saved per-user adjustments remain valid and override these values.

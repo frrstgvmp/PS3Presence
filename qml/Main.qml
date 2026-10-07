@@ -672,6 +672,7 @@ ApplicationWindow {
         objectName: "aboutDialog"
         property bool usernameCopied: false
         property bool profileOpenFailed: false
+        property bool webOpenFailed: false
         parent: Overlay.overlay
         modal: true; visible: root.aboutVisible
         x: (parent.width - width) / 2
@@ -681,12 +682,13 @@ ApplicationWindow {
             root.aboutVisible = false
             usernameCopied = false
             profileOpenFailed = false
+            webOpenFailed = false
             discordCopyTimer.stop()
         }
         Timer { id: discordCopyTimer; interval: 1800; onTriggered: aboutDialog.usernameCopied = false }
         background: Rectangle { color: root.theme.dialog; radius: 4; border.color: root.theme.border }
         contentItem: Item {
-            implicitHeight: 220
+            implicitHeight: 240
             Label { objectName: "programVersion"; text: "v. " + presence.version; color: root.theme.muted; font.pixelSize: 11 }
             ColumnLayout {
                 y: 34; width: parent.width; spacing: 8
@@ -731,21 +733,10 @@ ApplicationWindow {
                             opacity: root.theme.id === "light" ? 0.9 : 0.92
                         }
                     }
-                    Button {
+                    AboutLink {
                         id: authorDiscordLink
                         objectName: "authorDiscordUsername"
                         text: presence.authorDiscordUsername
-                        implicitWidth: discordUsernameText.implicitWidth; implicitHeight: 26
-                        padding: 0; hoverEnabled: true
-                        background: Item {}
-                        contentItem: Label {
-                            id: discordUsernameText
-                            text: authorDiscordLink.text; color: root.theme.accent
-                            font.pixelSize: 14; font.weight: Font.DemiBold; font.underline: true
-                            verticalAlignment: Text.AlignVCenter
-                            opacity: authorDiscordLink.down ? 0.65 : 1
-                        }
-                        HoverHandler { cursorShape: Qt.PointingHandCursor }
                         onClicked: {
                             presence.copyAuthorDiscordUsername()
                             aboutDialog.usernameCopied = true
@@ -770,8 +761,47 @@ ApplicationWindow {
                     color: root.theme.muted; font.pixelSize: 10
                     Layout.fillWidth: true; wrapMode: Text.WordWrap
                 }
+                RowLayout {
+                    Layout.fillWidth: true; spacing: 6
+                    Image {
+                        objectName: "aboutGitHubLogo"
+                        readonly property bool imageReady: status === Image.Ready
+                        Layout.minimumWidth: 16; Layout.preferredWidth: 16; Layout.maximumWidth: 16
+                        Layout.preferredHeight: 16; Layout.alignment: Qt.AlignVCenter
+                        source: root.theme.id === "light" ? "../assets/github-mark-black.svg" : "../assets/github-mark-white.svg"
+                        sourceSize: Qt.size(160, 160)
+                        fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true
+                        opacity: root.theme.id === "light" ? 0.9 : 0.92
+                        Accessible.name: "GitHub"
+                    }
+                    AboutLink {
+                        objectName: "aboutGitHubRepository"
+                        text: "PS3Presence"
+                        Accessible.name: "PS3Presence — GitHub"
+                        onClicked: aboutDialog.webOpenFailed = !presence.openGitHubRepository()
+                    }
+                    Item { Layout.fillWidth: true }
+                }
+                Label {
+                    objectName: "aboutWebLinkFeedback"
+                    visible: aboutDialog.webOpenFailed
+                    text: root.tr("Не удалось открыть ссылку в браузере.")
+                    color: root.theme.muted; font.pixelSize: 10
+                    Layout.fillWidth: true; wrapMode: Text.WordWrap
+                }
+            }
+            AboutLink {
+                objectName: "aboutGitHubIssues"
+                anchors.left: parent.left
+                anchors.bottom: aboutAnimation.top
+                anchors.bottomMargin: 8
+                implicitHeight: 20
+                font.pixelSize: 10; font.weight: Font.Normal
+                text: root.tr("Сообщить о проблеме")
+                onClicked: aboutDialog.webOpenFailed = !presence.openGitHubIssues()
             }
             TransparentGif {
+                id: aboutAnimation
                 objectName: "aboutAnimation"
                 anchors.left: parent.left; anchors.bottom: parent.bottom
                 width: parent.width / 2; height: width * 96 / 636
@@ -892,6 +922,22 @@ ApplicationWindow {
                 Layout.fillWidth: true; wrapMode: Text.WordWrap
             }
         }
+    }
+    component AboutLink: Button {
+        id: link
+        implicitWidth: linkText.implicitWidth; implicitHeight: 26
+        font.pixelSize: 14; font.weight: Font.DemiBold
+        padding: 0; hoverEnabled: true
+        background: Item {}
+        contentItem: Label {
+            id: linkText
+            text: link.text; color: root.theme.accent
+            font.pixelSize: link.font.pixelSize
+            font.weight: link.font.weight; font.underline: true
+            verticalAlignment: Text.AlignVCenter
+            opacity: link.down ? 0.65 : 1
+        }
+        HoverHandler { cursorShape: Qt.PointingHandCursor }
     }
     component LanguageButton: Button {
         id: languageButton

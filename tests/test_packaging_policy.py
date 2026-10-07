@@ -13,7 +13,7 @@ PROJECT_DIR = Path(__file__).resolve().parents[1]
 class PackagingPolicyTests(unittest.TestCase):
     def test_runtime_manifest_contains_only_active_art_icon_and_36_pcm_notes(self):
         entries = runtime_data(PROJECT_DIR)
-        self.assertEqual(len(entries), 54)
+        self.assertEqual(len(entries), 56)
         self.assertTrue(any(source.endswith("ConnectionIndicator.qml") for source, _ in entries))
         self.assertTrue(any(source.endswith("FallingPhrase.qml") for source, _ in entries))
         self.assertTrue(any(source.endswith("install_autostart.ps1") for source, _ in entries))

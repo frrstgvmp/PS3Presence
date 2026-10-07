@@ -11,6 +11,8 @@ ENGLISH = {
     "Переподключить Discord": "Reconnect Discord", "Закрыть": "Close", "Отмена": "Cancel",
     "Сохранить": "Save", "Готово": "Done", "Версия": "Version",
     "Ник скопирован": "Username copied",
+    "Сообщить о проблеме": "Report an issue",
+    "Не удалось открыть ссылку в браузере.": "Could not open the link in your browser.",
     "Не удалось открыть профиль. Ник скопирован — найди автора в Discord.":
         "Could not open the profile. Username copied — find the author in Discord.",
     "Подключение, опрос и автозапуск": "Connection, polling and startup",

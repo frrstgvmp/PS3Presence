@@ -7,6 +7,7 @@ RUNTIME_ASSETS = (
     "botanical-theme.png", "botanical-cannabis-theme.png", "newyear-theme.png", "ps3-presence.ico",
     "dualshock3.png", "presence-mark.svg", "about-pacman.gif",
     "discord-mark-white.svg", "discord-mark-black.svg",
+    "github-mark-white.svg", "github-mark-black.svg",
     *(f"newyear/pcm/sound{index}.wav" for index in range(1, 37)),
 )
 QML_FILES = ("Main.qml", "Avatar.qml", "Snowfall.qml", "LeafFall.qml", "FallingPhrase.qml", "ConnectionIndicator.qml", "GameStatisticsDialog.qml")

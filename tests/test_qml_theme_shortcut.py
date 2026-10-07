@@ -658,6 +658,82 @@ with ExitStack() as stack:
             self.assertFalse(warnings, warnings)
             window.hide()
 
+    def test_about_github_links_open_correct_pages_in_both_languages_and_all_themes(self):
+        with ExitStack() as stack:
+            controller, engine, window = self.create_window(stack)
+            warnings = []
+            engine.warnings.connect(lambda messages: warnings.extend(str(m) for m in messages))
+            window.setProperty("aboutVisible", True)
+            QTest.qWait(200)
+            logo = self.find_visual_item(window, "aboutGitHubLogo")
+            discord_logo = self.find_visual_item(window, "authorDiscordLogo")
+            repository = self.find_visual_item(window, "aboutGitHubRepository")
+            issues = self.find_visual_item(window, "aboutGitHubIssues")
+            feedback = self.find_visual_item(window, "aboutWebLinkFeedback")
+            animation = self.find_visual_item(window, "aboutAnimation")
+            dialog = window.findChild(QObject, "aboutDialog")
+            controller.toggleNewYearThemeButton()
+            self.assertEqual(repository.property("text"), "PS3Presence")
+            for theme in ("light", "oled", "botanical", "terracotta", "indigo", "sakura", "aurora", "newyear"):
+                controller.saveTheme(theme)
+                QTest.qWait(30)
+                self.assertTrue(logo.property("imageReady"))
+                filename = "github-mark-black.svg" if theme == "light" else "github-mark-white.svg"
+                self.assertTrue(logo.property("source").toString().endswith(filename))
+                self.assertEqual((logo.width(), logo.height()), (discord_logo.width(), discord_logo.height()))
+                self.assertEqual(logo.property("sourceSize").width(), 160)
+                self.assertTrue(logo.property("mipmap"))
+                self.assertAlmostEqual(repository.mapToScene(QPointF()).x()
+                                       - logo.mapToScene(QPointF(logo.width(), 0)).x(), 6)
+                self.assertAlmostEqual(animation.mapToScene(QPointF()).x(), issues.mapToScene(QPointF()).x())
+                self.assertAlmostEqual(animation.mapToScene(QPointF()).y()
+                                       - issues.mapToScene(QPointF(0, issues.height())).y(), 8)
+                self.assertEqual(issues.property("font").pixelSize(), 10)
+                self.assertEqual(issues.height(), 20)
+                self.assertAlmostEqual(logo.mapToScene(QPointF(0, logo.height()/2)).y(),
+                                       repository.mapToScene(QPointF(0, repository.height()/2)).y())
+
+            def click(item):
+                point = item.mapToScene(QPointF(item.width()/2, item.height()/2)).toPoint()
+                QTest.mouseClick(window, Qt.LeftButton, pos=point)
+                self.app.processEvents()
+
+            for language, caption in (("ru", "Сообщить о проблеме"), ("en", "Report an issue")):
+                controller._language = language
+                controller.language_changed.emit()
+                self.app.processEvents()
+                self.assertEqual(issues.property("text"), caption)
+                self.assertLessEqual(issues.x() + issues.width(), issues.parentItem().width())
+                clipboard = self.app.clipboard().text()
+                with patch("qml_app.QDesktopServices.openUrl", return_value=True) as open_url:
+                    click(repository)
+                    click(issues)
+                    self.assertEqual([call.args[0].toString() for call in open_url.call_args_list], [
+                        "https://github.com/forrestdarko-commits/PS3Presence",
+                        "https://github.com/forrestdarko-commits/PS3Presence/issues",
+                    ])
+                    self.assertFalse(feedback.property("visible"))
+                    self.assertEqual(self.app.clipboard().text(), clipboard)
+                with patch("qml_app.QDesktopServices.openUrl", return_value=False):
+                    click(issues)
+                    self.assertTrue(feedback.property("visible"))
+                # Both failure notices leave the bottom link and animation clear.
+                dialog.setProperty("profileOpenFailed", True)
+                self.app.processEvents()
+                self.assertLessEqual(feedback.mapToScene(QPointF(0, feedback.height())).y(),
+                                     issues.mapToScene(QPointF()).y())
+                dialog.setProperty("profileOpenFailed", False)
+                with patch("qml_app.QDesktopServices.openUrl", return_value=True):
+                    click(repository)
+                    self.assertFalse(feedback.property("visible"))
+            with patch("qml_app.QDesktopServices.openUrl", return_value=False):
+                click(repository)
+            click(self.find_visual_item(window, "closeAboutButton"))
+            QTest.qWait(200)
+            self.assertFalse(dialog.property("webOpenFailed"))
+            self.assertFalse(warnings, warnings)
+            window.hide()
+
     def test_language_buttons_translate_all_dialogs_dates_and_status_without_resetting_state(self):
         import re
         with ExitStack() as stack, tempfile.TemporaryDirectory() as folder:
