@@ -6,7 +6,9 @@ PS3 Presence is a Windows application that displays your current PlayStation 3 g
 
 It reads your status from PSN: no console installation or CFW/HEN is required. It works with official firmware when Sony returns the running game's information.
 
-Current source version: **0.7.1 beta**. This is not an official Sony or Discord product.
+Current release: [**0.7.1 beta**](https://github.com/frrstgvmp/PS3Presence/releases/tag/v0.7.1-beta). This is not an official Sony or Discord product.
+
+[Download for Windows x64 · ZIP](https://github.com/frrstgvmp/PS3Presence/releases/download/v0.7.1-beta/PS3Presence-0.7.1-beta-win64-portable.zip) · [SHA-256](https://github.com/frrstgvmp/PS3Presence/releases/download/v0.7.1-beta/SHA256SUMS.txt)
 
 ## Features
 
@@ -31,13 +33,13 @@ Presence depends on Sony's data and updates at the polling interval. Some games,
 
 ### Portable application
 
-1. Open [Releases](https://github.com/frrstgvmp/PS3Presence/releases).
-2. If a build is available, download the Windows ZIP under **Assets**, not the automatic **Source code** archive.
-3. Extract the entire archive to a permanent folder and run `PS3Presence.exe`.
+1. Open the [0.7.1 beta release](https://github.com/frrstgvmp/PS3Presence/releases/tag/v0.7.1-beta).
+2. Download `PS3Presence-0.7.1-beta-win64-portable.zip` under **Assets**, not the automatic **Source code** archive. No installation or Python is required.
+3. Extract the entire archive to a permanent folder and run `PS3Presence\PS3Presence.exe`.
 4. Keep the `_internal` folder beside the EXE: the application needs it to run.
 5. Open **Settings** and complete the configuration below.
 
-If no portable builds have been published yet, use the source instructions.
+Fully quit any older copy before updating. Settings, authentication and statistics remain in `%LOCALAPPDATA%\PS3Presence`; you do not need to move them into the new folder. Autostart does not automatically switch to a new application folder.
 
 ### Discord
 

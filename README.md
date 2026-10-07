@@ -6,7 +6,9 @@ PS3 Presence — приложение для Windows, которое показ�
 
 Программа получает статус из PSN: устанавливать что-либо на консоль или использовать CFW/HEN не требуется. Работает с официальной прошивкой, если Sony возвращает сведения о запущенной игре.
 
-Текущая версия исходников: **0.7.1 beta**. Проект не является официальным продуктом Sony или Discord.
+Актуальный релиз: [**0.7.1 beta**](https://github.com/frrstgvmp/PS3Presence/releases/tag/v0.7.1-beta). Проект не является официальным продуктом Sony или Discord.
+
+[Скачать для Windows x64 · ZIP](https://github.com/frrstgvmp/PS3Presence/releases/download/v0.7.1-beta/PS3Presence-0.7.1-beta-win64-portable.zip) · [SHA-256](https://github.com/frrstgvmp/PS3Presence/releases/download/v0.7.1-beta/SHA256SUMS.txt)
 
 ## Возможности
 
@@ -31,13 +33,13 @@ PS3 Presence — приложение для Windows, которое показ�
 
 ### Готовая программа
 
-1. Открой [Releases](https://github.com/frrstgvmp/PS3Presence/releases).
-2. Если сборка опубликована, скачай ZIP для Windows из **Assets**, а не автоматический архив **Source code**.
-3. Распакуй весь архив в постоянную папку и запусти `PS3Presence.exe`.
+1. Открой [релиз 0.7.1 beta](https://github.com/frrstgvmp/PS3Presence/releases/tag/v0.7.1-beta).
+2. Скачай `PS3Presence-0.7.1-beta-win64-portable.zip` из **Assets**, а не автоматический архив **Source code**. Установка и Python не нужны.
+3. Распакуй весь архив в постоянную папку и запусти `PS3Presence\PS3Presence.exe`.
 4. Оставь папку `_internal` рядом с EXE: без неё программа не запустится.
 5. Открой «Настройки» и выполни настройку ниже.
 
-Если готовых сборок ещё нет, воспользуйся запуском из исходников.
+Перед обновлением полностью закрой старую копию программы. Настройки, авторизация и статистика сохраняются в `%LOCALAPPDATA%\PS3Presence`; переносить их в новую папку не нужно. Автозапуск сам на новую папку не переключается.
 
 ### Discord
 
