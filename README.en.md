@@ -16,8 +16,6 @@ Current source version: **0.7.0 beta**. This is not an official Sony or Discord 
 - Session history with dates, duration and state; game sorting by playtime or last played.
 - System tray operation, Discord reconnect and Windows autostart.
 - Russian and English UI; Russian is the default.
-- Seven colour themes and an additional seasonal Christmas theme.
-- Optional decoration: plants, interactive lights, particles and a musical garland.
 - Timestamped Event Log and a local artwork cache.
 
 ## Requirements
@@ -84,27 +82,6 @@ Statistics are collected locally while PS3 Presence runs, including in the tray.
 Start/end dates are observation boundaries, not guaranteed console launch/exit times. Counted duration may be shorter than the interval between them. Last played uses the start of a recorded session; legacy records without history use the available last observation date.
 
 Data is checkpointed approximately every 15 seconds and at important transitions. A crash may lose the most recent unsaved seconds. Do not run the EXE and Python version simultaneously: two copies may count the same game twice.
-
-## Themes, decoration and tray
-
-Aurora is the default theme; an explicitly saved theme persists across launches. **RU | EN** changes the language without changing statistics or authentication.
-
-The graphic button to the right of **Settings**, **Statistics** and **About** toggles decoration. Decoration starts disabled on each launch; colour themes also work without it. Click individual bulbs to toggle their lights.
-
-Closing the main window hides the application in the tray. Select **Exit** from the tray icon's menu to quit completely. The version and author contact are in **About**.
-
-Autostart is enabled in settings and creates a **PS3 Discord Presence** task in Windows Task Scheduler. Check there, not just Task Manager's Startup list. Do not move the application folder afterwards: the task references its location.
-
-<details>
-<summary>Easter eggs</summary>
-
-- In regular themes, several clicks on the lowest right leaf turn on all lights; once unlocked, each click toggles them on or off.
-- In Botanical, the same Easter egg also enables falling leaves.
-- The Christmas theme is available December 10–January 20. Outside the season, type `3112` in the main window, not a settings field, to reveal its button; type it again to hide it.
-- In Christmas, the lowest right pinecone toggles all lights and snow. Hovering over bulbs plays garland notes.
-- In About, `Praise Teh Sun \[T]/` assembles and scatters in a loop. Clicking it triggers an additional letter burst, then resumes the regular animation.
-
-</details>
 
 ## Artwork
 
