@@ -709,8 +709,8 @@ with ExitStack() as stack:
                     click(repository)
                     click(issues)
                     self.assertEqual([call.args[0].toString() for call in open_url.call_args_list], [
-                        "https://github.com/forrestdarko-commits/PS3Presence",
-                        "https://github.com/forrestdarko-commits/PS3Presence/issues",
+                        "https://github.com/frrstgvmp/PS3Presence",
+                        "https://github.com/frrstgvmp/PS3Presence/issues",
                     ])
                     self.assertFalse(feedback.property("visible"))
                     self.assertEqual(self.app.clipboard().text(), clipboard)

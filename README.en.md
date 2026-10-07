@@ -6,7 +6,7 @@ PS3 Presence is a Windows application that displays your current PlayStation 3 g
 
 It reads your status from PSN: no console installation or CFW/HEN is required. It works with official firmware when Sony returns the running game's information.
 
-Current source version: **0.7.0 beta**. This is not an official Sony or Discord product.
+Current source version: **0.7.1 beta**. This is not an official Sony or Discord product.
 
 ## Features
 
@@ -31,7 +31,7 @@ Presence depends on Sony's data and updates at the polling interval. Some games,
 
 ### Portable application
 
-1. Open [Releases](https://github.com/forrestdarko-commits/PS3Presence/releases).
+1. Open [Releases](https://github.com/frrstgvmp/PS3Presence/releases).
 2. If a build is available, download the Windows ZIP under **Assets**, not the automatic **Source code** archive.
 3. Extract the entire archive to a permanent folder and run `PS3Presence.exe`.
 4. Keep the `_internal` folder beside the EXE: the application needs it to run.
@@ -109,7 +109,7 @@ The application does not ask for your PSN password: sign-in happens on Sony's we
 Tested with **Python 3.12 x64**. Install Python and Git, then run in PowerShell:
 
 ```powershell
-git clone https://github.com/forrestdarko-commits/PS3Presence.git
+git clone https://github.com/frrstgvmp/PS3Presence.git
 cd PS3Presence
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -146,17 +146,17 @@ Build for Windows x64:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 -Release
-.\releases\0.7.0-beta\PS3Presence\PS3Presence.exe --smoke-test
+.\releases\0.7.1-beta\PS3Presence\PS3Presence.exe --smoke-test
 ```
 
 The release directory follows the version in `app_metadata.py`. Asset preparation uses the icon source `design/images.png` and original notes in `design/newyear/audio`; other design mockups are not required. Use the existing `PS3Presence.spec`, which configures the required Qt modules and matching OpenSSL DLLs.
 
 The `--smoke-test` check runs without connecting to PSN/Discord or saving personal settings. The optional `--smoke-test-audio` also checks audio output and actually plays short notes.
 
-Before packaging, create `releases/0.7.0-beta/README.txt` with user instructions and copy `LICENSE` to the same folder, then run:
+Before packaging, create `releases/0.7.1-beta/README.txt` with user instructions and copy `LICENSE` to the same folder, then run:
 
 ```powershell
-.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.7.0-beta
+.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.7.1-beta
 ```
 
 The packager checks the file manifest, absence of known private data and ZIP integrity, then creates the archive and `SHA256SUMS.txt`. Attach them to a GitHub Release rather than committing them to source control. An existing version archive is not overwritten.
@@ -191,7 +191,7 @@ Check the archive's origin and SHA-256; if uncertain, run reviewed source code. 
 
 ## Feedback and license
 
-Report bugs and suggestions through [GitHub Issues](https://github.com/forrestdarko-commits/PS3Presence/issues). Include the version, reproduction steps and a log excerpt with personal data removed.
+Report bugs and suggestions through [GitHub Issues](https://github.com/frrstgvmp/PS3Presence/issues). Include the version, reproduction steps and a log excerpt with personal data removed.
 
 Author on Discord: [lapamivverh](https://discord.com/users/308300626062737411). Clicking the username in About opens the profile and copies the username.
 

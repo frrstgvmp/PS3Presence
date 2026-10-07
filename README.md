@@ -6,7 +6,7 @@ PS3 Presence — приложение для Windows, которое показ�
 
 Программа получает статус из PSN: устанавливать что-либо на консоль или использовать CFW/HEN не требуется. Работает с официальной прошивкой, если Sony возвращает сведения о запущенной игре.
 
-Текущая версия исходников: **0.7.0 beta**. Проект не является официальным продуктом Sony или Discord.
+Текущая версия исходников: **0.7.1 beta**. Проект не является официальным продуктом Sony или Discord.
 
 ## Возможности
 
@@ -31,7 +31,7 @@ PS3 Presence — приложение для Windows, которое показ�
 
 ### Готовая программа
 
-1. Открой [Releases](https://github.com/forrestdarko-commits/PS3Presence/releases).
+1. Открой [Releases](https://github.com/frrstgvmp/PS3Presence/releases).
 2. Если сборка опубликована, скачай ZIP для Windows из **Assets**, а не автоматический архив **Source code**.
 3. Распакуй весь архив в постоянную папку и запусти `PS3Presence.exe`.
 4. Оставь папку `_internal` рядом с EXE: без неё программа не запустится.
@@ -109,7 +109,7 @@ NPSSO — секретный код авторизации PSN. Не публи�
 Проверено на **Python 3.12 x64**. Установи Python и Git, затем выполни в PowerShell:
 
 ```powershell
-git clone https://github.com/forrestdarko-commits/PS3Presence.git
+git clone https://github.com/frrstgvmp/PS3Presence.git
 cd PS3Presence
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -146,17 +146,17 @@ py -3.12 -m venv .venv
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 -Release
-.\releases\0.7.0-beta\PS3Presence\PS3Presence.exe --smoke-test
+.\releases\0.7.1-beta\PS3Presence\PS3Presence.exe --smoke-test
 ```
 
 Каталог релиза определяется версией в `app_metadata.py`. Скрипт подготовки использует только исходник иконки `design/images.png` и оригинальные ноты `design/newyear/audio`; остальные макеты для сборки не нужны. Используй существующий `PS3Presence.spec`: в нём настроены необходимые Qt-модули и совместимые OpenSSL DLL.
 
 Проверка `--smoke-test` работает без подключения к PSN/Discord и без сохранения личных настроек. Дополнительный `--smoke-test-audio` проверяет вывод звука и действительно играет короткие ноты.
 
-Перед упаковкой создай `releases/0.7.0-beta/README.txt` с инструкцией для пользователя и скопируй `LICENSE` в ту же папку, затем:
+Перед упаковкой создай `releases/0.7.1-beta/README.txt` с инструкцией для пользователя и скопируй `LICENSE` в ту же папку, затем:
 
 ```powershell
-.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.7.0-beta
+.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.7.1-beta
 ```
 
 Упаковщик проверяет комплектность файлов, отсутствие известных личных данных и целостность ZIP, затем создаёт архив и `SHA256SUMS.txt`. Эти файлы прикрепляются к GitHub Release, а не коммитятся в исходники. Архив одной версии повторно не перезаписывается.
@@ -191,7 +191,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 -Release
 
 ## Обратная связь и лицензия
 
-Ошибки и предложения: [GitHub Issues](https://github.com/forrestdarko-commits/PS3Presence/issues). Укажи версию, шаги воспроизведения и очищенный от личных данных фрагмент лога.
+Ошибки и предложения: [GitHub Issues](https://github.com/frrstgvmp/PS3Presence/issues). Укажи версию, шаги воспроизведения и очищенный от личных данных фрагмент лога.
 
 Автор в Discord: [lapamivverh](https://discord.com/users/308300626062737411). В About нажатие на ник открывает профиль и одновременно копирует ник.
 
