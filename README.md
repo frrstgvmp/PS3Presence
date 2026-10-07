@@ -6,7 +6,7 @@ PS3 Presence — приложение для Windows, которое показ�
 
 Программа получает статус из PSN: устанавливать что-либо на консоль или использовать CFW/HEN не требуется. Работает с официальной прошивкой, если Sony возвращает сведения о запущенной игре.
 
-Текущая версия исходников: **0.9.9**. Проект не является официальным продуктом Sony или Discord.
+Текущая версия исходников: **0.7.0 beta**. Проект не является официальным продуктом Sony или Discord.
 
 ## Возможности
 
@@ -169,17 +169,17 @@ py -3.12 -m venv .venv
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 -Release
-.\releases\0.9.9\PS3Presence\PS3Presence.exe --smoke-test
+.\releases\0.7.0-beta\PS3Presence\PS3Presence.exe --smoke-test
 ```
 
 Каталог релиза определяется версией в `app_metadata.py`. Скрипт подготовки использует только исходник иконки `design/images.png` и оригинальные ноты `design/newyear/audio`; остальные макеты для сборки не нужны. Используй существующий `PS3Presence.spec`: в нём настроены необходимые Qt-модули и совместимые OpenSSL DLL.
 
 Проверка `--smoke-test` работает без подключения к PSN/Discord и без сохранения личных настроек. Дополнительный `--smoke-test-audio` проверяет вывод звука и действительно играет короткие ноты.
 
-Перед упаковкой создай `releases/0.9.9/README.txt` с инструкцией для пользователя, затем:
+Перед упаковкой создай `releases/0.7.0-beta/README.txt` с инструкцией для пользователя и скопируй `LICENSE` в ту же папку, затем:
 
 ```powershell
-.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.9.9
+.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.7.0-beta
 ```
 
 Упаковщик проверяет комплектность файлов, отсутствие известных личных данных и целостность ZIP, затем создаёт архив и `SHA256SUMS.txt`. Эти файлы прикрепляются к GitHub Release, а не коммитятся в исходники. Архив одной версии повторно не перезаписывается.

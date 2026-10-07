@@ -6,7 +6,7 @@ PS3 Presence is a Windows application that displays your current PlayStation 3 g
 
 It reads your status from PSN: no console installation or CFW/HEN is required. It works with official firmware when Sony returns the running game's information.
 
-Current source version: **0.9.9**. This is not an official Sony or Discord product.
+Current source version: **0.7.0 beta**. This is not an official Sony or Discord product.
 
 ## Features
 
@@ -169,17 +169,17 @@ Build for Windows x64:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 -Release
-.\releases\0.9.9\PS3Presence\PS3Presence.exe --smoke-test
+.\releases\0.7.0-beta\PS3Presence\PS3Presence.exe --smoke-test
 ```
 
 The release directory follows the version in `app_metadata.py`. Asset preparation uses the icon source `design/images.png` and original notes in `design/newyear/audio`; other design mockups are not required. Use the existing `PS3Presence.spec`, which configures the required Qt modules and matching OpenSSL DLLs.
 
 The `--smoke-test` check runs without connecting to PSN/Discord or saving personal settings. The optional `--smoke-test-audio` also checks audio output and actually plays short notes.
 
-Before packaging, create `releases/0.9.9/README.txt` with user instructions, then run:
+Before packaging, create `releases/0.7.0-beta/README.txt` with user instructions and copy `LICENSE` to the same folder, then run:
 
 ```powershell
-.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.9.9
+.\.venv\Scripts\python.exe .\tools\package_release.py .\releases\0.7.0-beta
 ```
 
 The packager checks the file manifest, absence of known private data and ZIP integrity, then creates the archive and `SHA256SUMS.txt`. Attach them to a GitHub Release rather than committing them to source control. An existing version archive is not overwritten.

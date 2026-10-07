@@ -1,0 +1,34 @@
+PS3 Presence — third-party notices
+
+The project's MIT license applies to its own code, not to third-party components.
+The accompanying license texts retain their original terms and copyright notices.
+
+Qt / Qt for Python / PySide6 / Shiboken6 6.11.2
+The application's Qt libraries are dynamically linked and stored as separate DLLs.
+Open-source license information: https://doc.qt.io/qt-6/licensing.html
+Qt for Python source: https://code.qt.io/cgit/pyside/pyside-setup.git/
+Qt module sources: https://code.qt.io/cgit/qt/
+Match version 6.11.2 when obtaining the source corresponding to these libraries.
+LGPL-3.0 and GPL-3.0 license texts are supplied in the Qt directory.
+Their inclusion does not change the license of PS3 Presence's own code.
+
+OpenSSL
+Apache-2.0 license text: OpenSSL/LICENSE.txt
+Source: https://github.com/openssl/openssl
+
+Python 3.12
+The Python runtime license is supplied in Python/LICENSE.txt.
+Source: https://www.python.org/downloads/source/
+
+Python libraries and PyInstaller
+Upstream license and notice files from installed distributions are supplied in
+directories named for their distributions. The PyInstaller bootloader uses its
+upstream license and exception; PS3 Presence does not alter those terms.
+
+Artwork, logos and audio
+PlayStation and Discord names and logos belong to their respective owners.
+Game artwork retrieved from PlayStation or GameTDB is not included as a bundled
+game library and remains subject to its owners' terms.
+GameTDB attribution: https://www.gametdb.com/PS3/Downloads
+Decorative assets and audio may have separate usage terms; the project MIT license
+does not grant rights to third-party trademarks or media.

@@ -1,6 +1,7 @@
 """Release metadata and the final, calibrated garland positions."""
 
-VERSION = "0.9.9"
+VERSION = "0.7.0 beta"
+RELEASE_VERSION = VERSION.replace(" ", "-")
 
 # Public author contact; separate from the player's PSN/Discord account.
 AUTHOR_DISCORD_USERNAME = "lapamivverh"

@@ -11,7 +11,7 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_DIR))
 
-from app_metadata import VERSION
+from app_metadata import RELEASE_VERSION
 from packaging_policy import RUNTIME_ASSETS, QML_FILES, RUNTIME_SCRIPTS
 
 
@@ -29,6 +29,9 @@ def validate_release(directory: Path) -> list[Path]:
     for script in RUNTIME_SCRIPTS:
         if not (app / "_internal" / script).is_file():
             raise FileNotFoundError(f"Runtime autostart script missing: {script}")
+    for notice in ("THIRD_PARTY_NOTICES.txt", "Qt/LGPL-3.0-only.txt", "Qt/GPL-3.0-only.txt", "OpenSSL/LICENSE.txt", "Python/LICENSE.txt"):
+        if not (app / "_internal" / "licenses" / notice).is_file():
+            raise FileNotFoundError(f"Third-party notice missing: {notice}; run prepare_release_licenses.py")
     files = sorted(path for path in app.rglob("*") if path.is_file())
     private_parts = {".env", "logs", "auth.dat", "config.json", "observed_game_statuses.json", "game_statistics.sqlite3", "game_statistics.sqlite3-journal", "game_statistics.sqlite3-wal", "game_statistics.sqlite3-shm"}
     for path in files:
@@ -40,9 +43,10 @@ def validate_release(directory: Path) -> list[Path]:
             raise ValueError(f"Unused media/browser dependency found: {relative}")
         if name in {"qt6pdf.dll", "qpdf.dll", "ffmpegmediaplugin.dll", "windowsmediaplugin.dll"}:
             raise ValueError(f"Unused plugin found: {relative}")
-    files.append(directory / "README.txt")
-    if not files[-1].is_file():
-        raise FileNotFoundError("Release README.txt is missing")
+    for name in ("README.txt", "LICENSE"):
+        files.append(directory / name)
+        if not files[-1].is_file():
+            raise FileNotFoundError(f"Release {name} is missing")
     return files
 
 
@@ -56,7 +60,7 @@ def main() -> int:
     if directory == (PROJECT_DIR / "releases").resolve():
         raise ValueError("Choose a versioned release directory")
     files = validate_release(directory)
-    archive = directory / f"PS3Presence-{VERSION}-win64-compact.zip"
+    archive = directory / f"PS3Presence-{RELEASE_VERSION}-win64-portable.zip"
     temporary = archive.with_suffix(".zip.tmp")
     if archive.exists() or temporary.exists():
         raise FileExistsError("Preserving an existing archive; use a fresh release folder")

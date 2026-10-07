@@ -12,7 +12,7 @@ $python = Join-Path $projectDirectory '.venv\Scripts\python.exe'
 $env:PATH = (($env:PATH -split ';') | Where-Object {
     $_ -notmatch '[\\/]codex-runtimes[\\/].*[\\/]dependencies[\\/]native([\\/]|$)'
 }) -join ';'
-$appVersion = & $python -c 'import sys; sys.path.insert(0, sys.argv[1]); from app_metadata import VERSION; print(VERSION)' $projectDirectory
+$appVersion = & $python -c 'import sys; sys.path.insert(0, sys.argv[1]); from app_metadata import RELEASE_VERSION; print(RELEASE_VERSION)' $projectDirectory
 if ($LASTEXITCODE -ne 0) { throw 'Could not read application version' }
 $buildArguments = @()
 if ($Release) {
@@ -55,5 +55,9 @@ if (-not $SkipTests) {
 & $python -m PyInstaller --noconfirm --clean `
     @buildArguments (Join-Path $projectDirectory 'PS3Presence.spec')
 if ($LASTEXITCODE -ne 0) { throw 'Executable build failed' }
+if ($Release) {
+    & $python (Join-Path $projectDirectory 'tools\prepare_release_licenses.py') $releaseDirectory
+    if ($LASTEXITCODE -ne 0) { throw 'Third-party license preparation failed' }
+}
 
 Write-Host "Built: $(Join-Path $releaseDirectory 'PS3Presence\PS3Presence.exe')"
