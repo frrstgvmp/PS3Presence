@@ -17,12 +17,12 @@ Current release: [**0.7.1 beta**](https://github.com/frrstgvmp/PS3Presence/relea
 - Per-game statistics: accumulated playtime, detected session count and last played date.
 - Session history with dates, duration and state; game sorting by playtime or last played.
 - System tray operation, Discord reconnect and Windows autostart.
-- Russian and English UI; Russian is the default.
+- Russian and English UI.
 - Timestamped Event Log and a local artwork cache.
 
 ## Requirements
 
-- Windows x64. A Linux port has not been implemented.
+- Windows x64.
 - A PS3 connected to PSN and access to the account used to play.
 - The installed, running Discord desktop client. The browser client alone is not sufficient.
 - Internet access to Sony's services; artwork also requires access to image servers.
@@ -34,7 +34,7 @@ Presence depends on Sony's data and updates at the polling interval. Some games,
 ### Portable application
 
 1. Open the [0.7.1 beta release](https://github.com/frrstgvmp/PS3Presence/releases/tag/v0.7.1-beta).
-2. Download `PS3Presence-0.7.1-beta-win64-portable.zip` under **Assets**, not the automatic **Source code** archive. No installation or Python is required.
+2. Download `PS3Presence-0.7.1-beta-win64-portable.zip` under **Assets**. No installation or Python is required.
 3. Extract the entire archive to a permanent folder and run `PS3Presence\PS3Presence.exe`.
 4. Keep the `_internal` folder beside the EXE: the application needs it to run.
 5. Open **Settings** and complete the configuration below.
@@ -118,8 +118,6 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe .\gui.py
 ```
 
-Prepared PCM sounds are already included in the repository; normal launches do not require MP3 conversion. Configure the connection through the UI on first launch.
-
 Optional manual configuration: copy `.env.example` to `.env` and fill in values locally only. Settings saved in the application take precedence. Never include `.env` in a commit or release.
 
 Other modes:
@@ -150,10 +148,6 @@ Build for Windows x64:
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1 -Release
 .\releases\0.7.1-beta\PS3Presence\PS3Presence.exe --smoke-test
 ```
-
-The release directory follows the version in `app_metadata.py`. Asset preparation uses the icon source `design/images.png` and original notes in `design/newyear/audio`; other design mockups are not required. Use the existing `PS3Presence.spec`, which configures the required Qt modules and matching OpenSSL DLLs.
-
-The `--smoke-test` check runs without connecting to PSN/Discord or saving personal settings. The optional `--smoke-test-audio` also checks audio output and actually plays short notes.
 
 Before packaging, create `releases/0.7.1-beta/README.txt` with user instructions and copy `LICENSE` to the same folder, then run:
 
@@ -195,7 +189,7 @@ Check the archive's origin and SHA-256; if uncertain, run reviewed source code. 
 
 Report bugs and suggestions through [GitHub Issues](https://github.com/frrstgvmp/PS3Presence/issues). Include the version, reproduction steps and a log excerpt with personal data removed.
 
-Author on Discord: [lapamivverh](https://discord.com/users/308300626062737411). Clicking the username in About opens the profile and copies the username.
+Author on Discord: [lapamivverh](https://discord.com/users/308300626062737411).
 
 Project code is published under [MIT](LICENSE). Third-party libraries, logos, game images and audio may have separate usage terms; this project's license does not override them.
 
